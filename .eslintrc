@@ -1,0 +1,24 @@
+{
+  "parser": "@babel/eslint-parser",
+  "extends": ["standard", "standard-jsx", "standard-react"],
+  "parserOptions": {
+    "requireConfigFile": false,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
+  },
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "max-len": [
+      "error",
+      { "code": 120, "tabWidth": 2 }
+    ]
+  },
+  "globals": {
+    "fetch": true,
+    "localStorage": true,
+    "Storage": true
+  }
+}
