@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export const LoginScreen = () => {
   return (
@@ -24,16 +25,26 @@ export const LoginScreen = () => {
         className='btn btn-lg btn-outline-secondary w-100'
         type='submit'
       >
-        Submit
+        Login
       </button>
       <div className='auth__form__social'>
         <p className='auth__form__social__title'>Login with social network</p>
         <button className='auth__form__social__btn'>
-          <img src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg' alt='google button' />
-          <span>Sign in with google</span>
+          <figure>
+            <img
+              src='https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'
+              alt='google button'
+            />
+          </figure>
+          <p>Sign in with google</p>
         </button>
       </div>
-      <p className='auth__form__subtitle'>Create new account</p>
+      <Link
+        to='/auth/register'
+        className='auth__form__subtitle'
+      >
+        Create new account
+      </Link>
     </form>
   )
 }

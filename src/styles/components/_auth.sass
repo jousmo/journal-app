@@ -20,8 +20,30 @@
     &__social
       margin-top: 1rem
       text-align: center
+      &__title
+        font-weight: bold
       &__btn
-        display: block
+        display: flex
         width: 100%
+        padding: 0
+        border: 1px solid $light-grey
+        background-color: transparent
+        align-items: center
+        & figure, p
+          margin: 0
+        & figure
+          padding: 1rem
+          & img
+            width: 30px
+        & p
+          font-size: 1.5rem
+          background-color: $google-blue
+          width: 100%
+          line-height: 62px
+          color: $white
+
     &__subtitle
+      display: block
+      font-weight: bold
       margin: 1rem 0 0 0
+      text-decoration: none
