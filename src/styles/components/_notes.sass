@@ -1,0 +1,33 @@
+.notes
+  &__wrapper
+    display: flex
+    flex-direction: column
+    height: 100vh
+  &__appbar
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 10px 20px
+    background-color: $primary
+    color: $white
+  &__content
+    padding: 1rem
+    display: flex
+    flex-direction: column
+    height: 100%
+    .form-control
+      border: none
+      color: $dark-grey
+      &:focus
+        outline: none
+    input.form-control
+      font-size: 25px
+      font-weight: 700
+    textarea.form-control
+      font-size: 20px
+      flex: 1 1 auto
+      resize: none
+  &__image
+    margin: 0
+    text-align: center
+
