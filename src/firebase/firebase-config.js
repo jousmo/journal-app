@@ -5,7 +5,8 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   updateProfile,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
@@ -30,5 +31,6 @@ export {
   googleAuthProvider,
   createUserWithEmailAndPassword,
   updateProfile,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  onAuthStateChanged
 }
