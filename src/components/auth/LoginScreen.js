@@ -8,7 +8,7 @@ import isEmail from 'validator/lib/isEmail'
 
 export const LoginScreen = () => {
   const dispatch = useDispatch()
-  const { msgError } = useSelector(state => state.ui)
+  const { loading, msgError } = useSelector(state => state.ui)
 
   const [formValues, handleInputChange] = useForm({
     email: '',
@@ -77,6 +77,7 @@ export const LoginScreen = () => {
       </div>
       <button
         className='btn btn-lg btn-outline-secondary w-100'
+        disabled={loading}
       >
         Login
       </button>

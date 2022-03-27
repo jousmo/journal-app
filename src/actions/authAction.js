@@ -7,15 +7,18 @@ import {
   updateProfile,
   signInWithEmailAndPassword
 } from '../firebase/firebase-config'
+import { finishLoading, startLoading } from './uiAction'
 
 export const startLoginEmailPassword = (email, password) => {
   return dispatch => {
+    dispatch(startLoading())
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
         const { uid, displayName } = !!user && user
         dispatch(login(uid, displayName))
       })
       .catch(console.error)
+      .finally(() => dispatch(finishLoading()))
   }
 }
 
