@@ -1,4 +1,5 @@
 import React from 'react'
+import { JournalEntries } from './JournalEntries'
 
 export const Sidebar = () => {
   return (
@@ -10,6 +11,11 @@ export const Sidebar = () => {
         </h2>
         <p className='journal__sidebar__logout'>Logout</p>
       </div>
+      <div className='journal__sidebar__calendar'>
+        <i className='far fa-calendar-plus fa-5x' />
+        <p className='mt-3'>New Entry</p>
+      </div>
+      <JournalEntries />
     </aside>
   )
 }
