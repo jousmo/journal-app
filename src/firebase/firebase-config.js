@@ -4,7 +4,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  signInWithEmailAndPassword
 } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
@@ -28,5 +29,6 @@ export {
   signInWithPopup,
   googleAuthProvider,
   createUserWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  signInWithEmailAndPassword
 }

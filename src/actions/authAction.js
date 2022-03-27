@@ -4,14 +4,18 @@ import {
   signInWithPopup,
   googleAuthProvider,
   createUserWithEmailAndPassword,
-  updateProfile
+  updateProfile,
+  signInWithEmailAndPassword
 } from '../firebase/firebase-config'
 
 export const startLoginEmailPassword = (email, password) => {
   return dispatch => {
-    setTimeout(() => {
-      dispatch(login(1234, 'hey'))
-    }, 3500)
+    signInWithEmailAndPassword(auth, email, password)
+      .then(({ user }) => {
+        const { uid, displayName } = !!user && user
+        dispatch(login(uid, displayName))
+      })
+      .catch(console.error)
   }
 }
 

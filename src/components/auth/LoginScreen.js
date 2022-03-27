@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useForm } from '../../hooks/useForm'
 import { startGoogleLogin, startLoginEmailPassword } from '../../actions/authAction'
+import { removeError, setError } from '../../actions/uiAction'
+import isEmail from 'validator/lib/isEmail'
 
 export const LoginScreen = () => {
   const dispatch = useDispatch()
+  const { msgError } = useSelector(state => state.ui)
 
   const [formValues, handleInputChange] = useForm({
     email: '',
@@ -16,11 +19,27 @@ export const LoginScreen = () => {
 
   const handleLogin = e => {
     e.preventDefault()
-    startLoginEmailPassword(email, password)(dispatch)
+
+    if (isFormValid()) {
+      startLoginEmailPassword(email, password)(dispatch)
+    }
   }
 
   const handleGoogleLogin = () => {
     startGoogleLogin()(dispatch)
+  }
+
+  const isFormValid = () => {
+    if (!isEmail(email)) {
+      dispatch(setError('Email is not valid'))
+      return false
+    } else if (password.length < 5) {
+      dispatch(setError('Password should be at least 6 characters and match each other'))
+      return false
+    }
+
+    dispatch(removeError())
+    return true
   }
 
   return (
@@ -29,6 +48,11 @@ export const LoginScreen = () => {
       onSubmit={handleLogin}
     >
       <h2 className='auth__form__title'>Login</h2>
+      {msgError && (
+        <div className='alert alert-danger' role='alert'>
+          <strong>Error:</strong> {msgError}
+        </div>
+      )}
       <div className='form-floating mb-3'>
         <input
           className='form-control'
