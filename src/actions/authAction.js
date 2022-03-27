@@ -5,7 +5,8 @@ import {
   googleAuthProvider,
   createUserWithEmailAndPassword,
   updateProfile,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut
 } from '../firebase/firebase-config'
 import { finishLoading, startLoading } from './uiAction'
 
@@ -49,3 +50,15 @@ export const login = (uid, displayName) => ({
   type: types.login,
   payload: { uid, displayName }
 })
+
+export const logout = () => ({
+  type: types.logout
+})
+
+export const startLogout = () => {
+  return dispatch => {
+    signOut(auth)
+      .then(() => dispatch(logout()))
+      .catch(console.error)
+  }
+}
