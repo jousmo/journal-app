@@ -5,16 +5,22 @@ import { JournalScreen } from '../components/journal/JournalScreen'
 import { useDispatch } from 'react-redux'
 import { auth, onAuthStateChanged } from '../firebase/firebase-config'
 import { login } from '../actions/authAction'
+import { PrivateRouter } from './PrivateRouter'
+import { PublicRouter } from './PublicRouter'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
   const [globalLoading, setGlobalLoading] = useState(true)
+  const [isLoggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, displayName } = user
         dispatch(login(uid, displayName))
+        setLoggedIn(true)
+      } else {
+        setLoggedIn(false)
       }
 
       setGlobalLoading(false)
@@ -34,8 +40,22 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<JournalScreen />} />
-        <Route path='/auth/*' element={<AuthRouter />} />
+        <Route
+          path='/'
+          element={
+            <PrivateRouter isLoggedIn={isLoggedIn}>
+              <JournalScreen />
+            </PrivateRouter>
+          }
+        />
+        <Route
+          path='/auth/*'
+          element={
+            <PublicRouter isLoggedIn={isLoggedIn}>
+              <AuthRouter />
+            </PublicRouter>
+          }
+        />
         <Route path='*' element={<Navigate replace to='/auth' />} />
       </Routes>
     </BrowserRouter>
