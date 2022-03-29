@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 import { types } from '../types'
 import {
   auth,
@@ -18,7 +19,9 @@ export const startLoginEmailPassword = (email, password) => {
         const { uid, displayName } = !!user && user
         dispatch(login(uid, displayName))
       })
-      .catch(console.error)
+      .catch(async error => {
+        await Swal.fire('Error', error.message, 'error')
+      })
       .finally(() => dispatch(finishLoading()))
   }
 }
@@ -30,7 +33,9 @@ export const startGoogleLogin = () => {
         const { uid, displayName } = !!user && user
         dispatch(login(uid, displayName))
       })
-      .catch(console.error)
+      .catch(async error => {
+        await Swal.fire('Error', error.message, 'error')
+      })
   }
 }
 
@@ -42,7 +47,9 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         const { uid, displayName } = !!user && user
         dispatch(login(uid, displayName))
       })
-      .catch(console.error)
+      .catch(async error => {
+        await Swal.fire('Error', error.message, 'error')
+      })
   }
 }
 
@@ -59,6 +66,8 @@ export const startLogout = () => {
   return dispatch => {
     signOut(auth)
       .then(() => dispatch(logout()))
-      .catch(console.error)
+      .catch(async error => {
+        await Swal.fire('Error', error.message, 'error')
+      })
   }
 }
