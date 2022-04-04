@@ -12,7 +12,8 @@ import {
 import {
   getFirestore,
   collection,
-  addDoc
+  addDoc,
+  getDocs
 } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -40,5 +41,6 @@ export {
   onAuthStateChanged,
   signOut,
   collection,
-  addDoc
+  addDoc,
+  getDocs
 }
