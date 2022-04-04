@@ -7,6 +7,7 @@ import { auth, onAuthStateChanged } from '../firebase/firebase-config'
 import { login } from '../actions/authAction'
 import { PrivateRouter } from './PrivateRouter'
 import { PublicRouter } from './PublicRouter'
+import { loadNotes } from '../actions/notesAction'
 
 export const AppRouter = () => {
   const dispatch = useDispatch()
@@ -19,10 +20,10 @@ export const AppRouter = () => {
         const { uid, displayName } = user
         dispatch(login(uid, displayName))
         setLoggedIn(true)
+        dispatch(loadNotes())
       } else {
         setLoggedIn(false)
       }
-
       setGlobalLoading(false)
     })
   }, [dispatch, setGlobalLoading])
