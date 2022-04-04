@@ -21,12 +21,12 @@ export const LoginScreen = () => {
     e.preventDefault()
 
     if (isFormValid()) {
-      startLoginEmailPassword(email, password)(dispatch)
+      dispatch(startLoginEmailPassword(email, password))
     }
   }
 
   const handleGoogleLogin = () => {
-    startGoogleLogin()(dispatch)
+    dispatch(startGoogleLogin())
   }
 
   const isFormValid = () => {
