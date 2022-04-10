@@ -1,13 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
+import { useDispatch } from 'react-redux'
+import { activeNote } from '../../actions/notesAction'
 
 export const JournalEntry = ({ note }) => {
-  const { title, body, url, date } = !!note && note
+  const { id, title, body, url, date } = !!note && note
   const strDate = dayjs(date).format('DD/MM/YYYY')
+  const dispatch = useDispatch()
+
+  const handleEntryClick = () => {
+    dispatch(activeNote(id, note))
+  }
 
   return (
-    <li className='journal__entry'>
+    <li
+      onClick={handleEntryClick}
+      className='journal__entry'
+    >
       {url && (
         <div
           className='journal__entry__picture'

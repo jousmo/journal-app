@@ -5,14 +5,14 @@ import { NotesScreen } from '../notes/NotesScreen'
 import { useSelector } from 'react-redux'
 
 export const JournalScreen = () => {
-  const { active } = useSelector(state => state?.notes)
+  const { active: noteActive } = useSelector(state => state?.notes)
 
   return (
     <section className='journal'>
       <Sidebar />
       <main>
-        {active
-          ? <NotesScreen />
+        {noteActive
+          ? <NotesScreen noteActive={noteActive} />
           : <NothingSelected />}
       </main>
     </section>
