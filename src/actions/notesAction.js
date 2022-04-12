@@ -27,6 +27,12 @@ export const loadNotes = () => {
   }
 }
 
+export const starSaveNote = note => {
+  return async (dispatch, getState) => {
+    const { uid } = getState()?.auth
+  }
+}
+
 export const activeNote = (id, note) => ({
   type: types.notesActive,
   payload: {
@@ -36,6 +42,11 @@ export const activeNote = (id, note) => ({
 })
 
 export const setNotes = notes => ({
+  type: types.notesLoad,
+  payload: notes
+})
+
+export const saveNote = note => ({
   type: types.notesLoad,
   payload: notes
 })
